@@ -1,7 +1,6 @@
 import * as api from "./api.js";
 
-const host = "https://library-i4b1.onrender.com";
-api.settings.host = "https://library-i4b1.onrender.com";
+const host = api.settings.host;
 
 export const login = api.login;
 export const register = api.register;
