@@ -53,7 +53,7 @@ jobs:
         wait_deploy: true
 
   deploy_app:
-    needs: build_tests
+    needs: deploy_server
 
     if: github.ref == 'refs/heads/main'
 
