@@ -25,10 +25,10 @@ jobs:
       run: npm install
       
     - name: Start the server    
-      run: npm run server
+      run: npm run server &
       
     - name: Start the app    
-      run: npm start
+      run: npm start &
       
     - name: Start tests 
       run: npm test
