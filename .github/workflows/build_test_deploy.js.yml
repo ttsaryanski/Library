@@ -35,3 +35,35 @@ jobs:
       
     - name: Start tests 
       run: npm test
+
+  deploy_server:
+    needs: build_tests
+
+    if: github.ref == 'refs/heads/main'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy server to Render
+      uses: JorgeLNJunior/render-deploy@v1.4.7
+      with:
+        service_id: ${{ secrets.BE_RENDER_SERVICE_ID }}
+        api_key: ${{ secrets.BE_RENDER_API_KEY }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        wait_deploy: true
+
+  deploy_app:
+    needs: build_tests
+
+    if: github.ref == 'refs/heads/main'
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy app to Render
+      uses: JorgeLNJunior/render-deploy@v1.4.7
+      with:
+        service_id: ${{ secrets.FE_RENDER_SERVICE_ID }}
+        api_key: ${{ secrets.FE_RENDER_API_KEY }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        wait_deploy: true
